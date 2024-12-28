@@ -1,0 +1,38 @@
+<div class="setDiv">
+  <nz-input-group [nzPrefix]="userIcon">
+    <input [ngModel]="employeeForm().name" style="padding: 5px;" (ngModelChange)="updateName($event)" nzId="employeeName"
+      placeholder="Enter employee name" nz-input />
+  </nz-input-group>
+  <ng-template #userIcon>
+    <img style="margin-right: 4px" src="/assets/icons/user.svg" nz-icon nzType="user" nzTheme="outline" />
+  </ng-template>
+
+  <nz-input-group [nzPrefix]="roleIcon">
+    <nz-select [ngModel]="employeeForm().role" style="width: 100%;" (ngModelChange)="updateRole($event)" nzPlaceholder="Select option"
+      [nzSuffixIcon]="'caret-down'">
+      <nz-option *ngFor="let role of roles" [nzValue]="role.value" [nzLabel]="role.label"></nz-option>
+    </nz-select>
+  </nz-input-group>
+  <ng-template #roleIcon>
+    <img style="margin-right: 4px" src="/assets/icons/role.png" height="20" nz-icon nzType="user" nzTheme="outline" />
+  </ng-template>
+
+
+  <custom-date-picker-start-end [ngModel]="employeeForm().dateRange" (ngModelChange)="updateDateRange($event)">
+  </custom-date-picker-start-end>
+
+  <div class="setDiv2">
+    <nz-divider style="margin: 0"></nz-divider>
+    <div style="
+      gap: 16px;
+      display: flex;
+      padding: 12px 16px;
+      justify-content: flex-end;
+    ">
+      <button nz-button nzType="default" (click)="closePage()">Cancel</button>
+      <button nz-button nzType="primary" (click)="saveEmployee()" >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="employee-grid">
+  <div style="padding: 16px; color: #1da1f2; font-weight: 500">
+    {{ title }}
+  </div>
+  <div class="cards-container for-desktop">
+    <ng-container *ngFor="let employee of employees">
+      <div class="card-wrapper card-style" style="position: relative;">
+        <nz-card class="employee-card " [nzBorderless]="true" [@swipeState]="swipeStates[employee.id]"
+          (touchstart)="onTouchStart($event, employee.id)" (touchmove)="onTouchMove($event, employee.id)"
+          (mousedown)="onMouseDown($event, employee.id)" (mousemove)="onMouseMove($event, employee.id)"
+          (mouseup)="onMouseUp()" (mouseleave)="onMouseLeave()" [routerLink]="['/employee/edit', employee.id]"
+          style="cursor: pointer">
+          <div class="employee-details">
+            <div style="font-size: 16px; font-weight: 500">
+              {{ employee.name }}
+            </div>
+            <span style="font-size: 14px; color: #949c9e" class="role-badge">
+              {{ employee.role }}
+            </span>
+            <span class="start-date" style="font-size: 12px; color: #949c9e">
+              {{
+              employee.endDate
+              ? (employee.startDate | date : "dd MMMM, yyyy") +
+              " - " +
+              (employee.endDate | date : "dd MMMM, yyyy")
+              : "From " + (employee.startDate | date : "dd MMMM, yyyy")
+              }}
+            </span>
+          </div>
+        </nz-card>
+        <div class="forDesktop2" style="position: absolute; z-index: 99999; bottom: 10px; right: 10px;">
+          <div style="display: flex; gap: 10px; justify-content: end; align-items: center;">
+            <img height="25"
+              style="filter: invert(26%) sepia(93%) saturate(7244%) hue-rotate(357deg) brightness(91%) contrast(121%); cursor: pointer;"
+              (click)="onDelete(employee.id)" src="/assets/icons/trash.svg" alt="">
+            <img style="cursor: pointer;" src="/assets/icons/edit-icon.png" [routerLink]="['/employee/edit', employee.id]" height="30" alt="Edit" />
+          </div>
+        </div>
+        <button *ngIf="!hideButton" class="delete-button" nz-button nzType="primary" nzDanger
+          (click)="onDelete(employee.id)">
+          <img src="/assets/icons/trash.svg" alt="Delete" />
+        </button>
+
+      </div>
+    </ng-container>
+  </div>
+</div>

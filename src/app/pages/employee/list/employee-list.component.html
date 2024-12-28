@@ -1,0 +1,23 @@
+<div style="padding: 10px;">
+  <div class="setDiv3" *ngIf="!employeeData || employeeData.length === 0">
+    <div class="setDiv4">
+      <img src="/assets/employee404.svg" alt="icon" />
+      No employee records found
+    </div>
+  </div>
+  <div  *ngIf="currentEmployees.length > 0">
+    <app-employee-card-list [title]="'Current Employees'" [employees]="currentEmployees"
+      (deleteEmployee)="handleDelete($event)"></app-employee-card-list>
+  </div>
+  <div    *ngIf="previousEmployees.length > 0">
+    <app-employee-card-list [title]="'Previous Employees'" [employees]="previousEmployees"
+      (deleteEmployee)="handleDelete($event)"></app-employee-card-list>
+  </div>
+  <!-- <div *ngIf="employeeData && employeeData.length > 0"
+    style="color: #949c9e; font-size: 15px; padding: 0 16px; margin: 12px 0px">
+    Swipe left to delete
+  </div> -->
+  <button nz-button nzType="primary" class="btn-design" (click)="navigateToAdd()">
+    <span nz-icon nzType="plus" style="font-size: 18px"></span>
+  </button>
+</div>

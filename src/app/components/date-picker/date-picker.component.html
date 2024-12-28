@@ -1,0 +1,85 @@
+<!-- <div class="picker-container">
+    <nz-date-picker
+      [nzDisabledDate]="disabledStartDate"
+      nzShowTime
+      class="start-picker"
+      nzFormat="yyyy-MM-dd HH:mm:ss"
+      [(ngModel)]="startValue"
+      (ngModelChange)="onStartValueChange($event)"
+      nzPlaceHolder="Start"
+      (nzOnOpenChange)="handleStartOpenChange($event)"
+    ></nz-date-picker>
+    <img src="/assets/icons/arrow-right.svg" alt="Arrow" />
+    <nz-date-picker
+      #endDatePicker
+      [nzDisabledDate]="disabledEndDate"
+      nzShowTime
+      class="end-picker"
+      nzFormat="yyyy-MM-dd HH:mm:ss"
+      [(ngModel)]="endValue"
+      (ngModelChange)="onEndValueChange($event)"
+      nzPlaceHolder="End"
+      (nzOnOpenChange)="handleEndOpenChange($event)"
+    ></nz-date-picker>
+  </div>
+</div> -->
+
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <!-- Buttons for Start Date -->
+  <div style="width: 40%;">
+    <div style="display: flex; gap: 5px; width: 100%;">
+      <!-- Always render the buttons -->
+      <div style="display: flex; gap: 5px; width: 100%;"
+        [style.visibility]="startDatePickerOpen ? 'visible' : 'hidden'">
+        <div style="display: grid; gap: 5px; width: 100%;">
+          <button nz-button nzType="default" (click)="setStartToday($event)">
+            Today
+          </button>
+          <button nz-button nzType="default" (click)="setStartNextMonday($event)">
+            Next Monday
+          </button>
+        </div>
+        <div style="display: grid; gap: 5px; width: 100%;">
+          <button nz-button nzType="default" (click)="setStartAfterWeek($event)">
+            After 1 Week
+          </button>
+          <button nz-button nzType="default" (click)="setStartNextTuesday($event)">
+            Next Tuesday
+          </button>
+        </div>
+      </div>
+    </div>
+    <nz-date-picker style="width: 100%; margin-top: 10px;" class="ant-form-item-control" [(ngModel)]="startValue"
+      [nzDisabledDate]="disabledStartDate" (nzOnOpenChange)="handleStartOpenChange($event)"
+      (ngModelChange)="onStartValueChange($event)"></nz-date-picker>
+  </div>
+  <div style="margin-top: 10vh;">
+    <img src="/assets/icons/arrow-right.svg" height="20" alt="Arrow" />
+  </div>
+  <div style="width: 40%;">
+    <div style="display: flex; gap: 5px; width: 100%;">
+      <!-- Always render the buttons -->
+      <div style="display: flex; gap: 5px; width: 100%;" [style.visibility]="endDatePickerOpen ? 'visible' : 'hidden'">
+        <div style="display: grid; gap: 5px; width: 100%;">
+          <button nz-button nzType="default" (click)="setEndToday($event)">
+            Today
+          </button>
+          <button nz-button nzType="default" (click)="setEndNextMonday($event)">
+            Next Monday
+          </button>
+        </div>
+        <div style="display: grid; gap: 5px; width: 100%;">
+          <button nz-button nzType="default" (click)="setEndNextTuesday($event)">
+            Next Tuesday
+          </button>
+          <button nz-button nzType="default" (click)="setEndAfterWeek($event)">
+            After 1 Week
+          </button>
+        </div>
+      </div>
+    </div>
+    <nz-date-picker style="width: 100%; margin-top: 10px;" class="ant-form-item-control" [(ngModel)]="endValue"
+      [nzDisabledDate]="disabledEndDate" (nzOnOpenChange)="handleEndOpenChange($event)"
+      (ngModelChange)="onEndValueChange($event)"></nz-date-picker>
+  </div>
+</div>
